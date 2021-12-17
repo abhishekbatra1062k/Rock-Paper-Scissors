@@ -169,7 +169,7 @@ only screen and (max-width:1280px) {
     }
     .play img{
         border-color: snow;
-        width: 400px;
+        width: 350px;
         border-radius: 50px;
     }
     input, label{
