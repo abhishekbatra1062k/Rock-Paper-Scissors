@@ -107,6 +107,8 @@ button:hover{
 .play{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 .choice, .output{
@@ -167,7 +169,7 @@ only screen and (max-width:1280px) {
     }
     .play img{
         border-color: snow;
-        width: 500px;
+        width: 400px;
         border-radius: 50px;
     }
     input, label{
