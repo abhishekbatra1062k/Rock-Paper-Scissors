@@ -1,24 +1,3 @@
-function computerPlay(){
-    const chooseOne = ['Rock','Paper','Scissors'];
-    const random = Math.floor(Math.random() * chooseOne.length);
-    return chooseOne[random].toUpperCase();
-}
-
-function playRound(playerChoice,computerChoice){
-    if(!(playerChoice==='PAPER' || playerChoice==='ROCK' || playerChoice==='SCISSORS')){
-        return {Winner: 'None', Output: "Invalid Input, Choose From 'Rock' , 'Paper' or 'Scissors' !"};        
-    }
-    let youWon='Computer';
-    let reason=computerChoice + ' beats ' + playerChoice;
-    if((playerChoice==='PAPER' && computerChoice==='ROCK') || (playerChoice==='SCISSORS' && computerChoice==='PAPER') || (playerChoice==='ROCK' && computerChoice==='SCISSORS')){
-        youWon='Player';
-        reason=playerChoice + ' beats ' + computerChoice;
-    }else if(playerChoice===computerChoice){
-        return {Winner: 'None', Output:'Tied, You Both Chose Same, LOL!'};
-    }
-    return {Winner: youWon, Output: 'You ' + (youWon=='Player'?'Won':'Lose') + ', ' + reason + '.'};
-}
-
 let yourScore=0;
 let computerScore=0;
 let highestScore=5;
@@ -39,6 +18,33 @@ choices.forEach(choice=>{
 });
 const output=document.querySelector('.output');
 
+function computerPlay(){
+    choices.forEach(choice=>{
+        choice.style.cssText="";
+    });
+    const chooseOne = ['Rock','Paper','Scissors'];
+    const random = Math.floor(Math.random() * chooseOne.length);
+    const ch=chooseOne[random];
+    choices.forEach(choice=>{
+        if(choice.id==ch.toLowerCase()){
+            choice.style.cssText="background-color: yellow;";
+        }
+    });
+    return ch.toUpperCase();
+}
+
+function playRound(playerChoice,computerChoice){
+    if(!(playerChoice==='PAPER' || playerChoice==='ROCK' || playerChoice==='SCISSORS')){
+        return {Winner: 'None', Output: "Invalid Input, Choose From 'Rock' , 'Paper' or 'Scissors' !"};        
+    }
+    let youWon='Computer';
+    if((playerChoice==='PAPER' && computerChoice==='ROCK') || (playerChoice==='SCISSORS' && computerChoice==='PAPER') || (playerChoice==='ROCK' && computerChoice==='SCISSORS')){
+        youWon='Player';
+    }else if(playerChoice===computerChoice){
+        return {Winner: 'None', Output:'Tied !'};
+    }
+    return {Winner: youWon, Output: (youWon=='Player'?'You':'Computer') + ' won a point! ' + (youWon=='Player'?':)':':(')};
+}
 
 function reset(){
     score.remove();
@@ -66,6 +72,10 @@ resetBtn.addEventListener('click',()=>{
 
 choices.forEach(btn => {
     btn.addEventListener('click',()=>{
+        setTimeout(()=>{
+            const choice=document.querySelector('#'+computerChoice.toLowerCase());
+            choice.style.cssText="";
+        },750);
         resetBtn.style.cssText="display: none;";
         msg.remove();
         var playerChoice=btn.id.toUpperCase();
@@ -87,16 +97,19 @@ choices.forEach(btn => {
         }
         score.innerHTML='Your Score: ' + yourScore + '<br>' + 'Computer\'s Score: '+ computerScore;
         output.prepend(score);
+        msg.style.whiteSpace='pre';
         if(computerScore==highestScore){
             msg.remove();
-            msg.textContent='Computer Won! Better Luck Next Time.';
+            msg.textContent=computerScore+' - '+yourScore+'\r\n';
+            msg.textContent+='Computer Won! Better Luck Next Time.';
             resetBtn.style.cssText="";
             output.prepend(msg);
             reset();
         }
         if(yourScore==highestScore){
             msg.remove();
-            msg.textContent='You Won! You\'re a CHAMP!';
+            msg.textContent=yourScore+' - '+computerScore+'\r\n';
+            msg.textContent+='You Won! You\'re a CHAMP!';
             output.prepend(msg);
             resetBtn.style.cssText="";
             reset();

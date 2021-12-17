@@ -127,7 +127,7 @@ button:hover{
     transform: rotate(360deg) scale(1.1) ;
 }
 @media only screen and (device-width: 1280px),
-only screen and (max-width:1280px) {
+only screen and (max-width:500px) {
     html, body{
         width: 100%;
         height: 100%;
@@ -144,11 +144,11 @@ only screen and (max-width:1280px) {
         gap: 10px;
     }
     h1{
-        font-size: 50px;
+        font-size: 30px;
         color: darkslategray;
     }
     h2{
-        font-size: 40px;
+        font-size: 20px;
         color: gray;
     }
     h1, h2, p{
@@ -164,7 +164,7 @@ only screen and (max-width:1280px) {
         transition: transform 0.1s ease-in-out;
     }
     img{
-        width: 150px;
+        width: 75px;
         padding: 10px;
     }
     .play img{
@@ -249,8 +249,7 @@ only screen and (max-width:1280px) {
         border-radius: 25px;
         background-color: yellowgreen;
         transition: transform 0.35s ease-in-out;
-      }
-      
+    }
     .fa-github:hover{
         transform: rotate(360deg) scale(1.1) ;
     }
