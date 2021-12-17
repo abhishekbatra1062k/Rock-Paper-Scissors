@@ -51,8 +51,9 @@ label{
     color: darkslategray;
 }
 input{
-    color: slategray;
-    background-color: lemonchiffon;
+    background-color: lightgray;
+    color: darkslategray;
+    border-width: 10px;
 }
 
 .choice-btn{
@@ -181,8 +182,9 @@ only screen and (max-width:500px) {
         color: darkslategray;
     }
     input{
-        color: slategray;
-        background-color: lemonchiffon;
+        background-color: lightgray;
+        color: darkslategray;
+        border-width: 5px;
     }
     
     .choice-btn{
